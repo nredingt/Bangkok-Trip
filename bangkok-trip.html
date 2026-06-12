@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Bangkok Christmas Trip 2026</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#FDF6EC;font-family:Georgia,serif;color:#2D2010;min-height:100vh;}
+.hero{background:#1A1208;padding:44px 20px 36px;text-align:center;position:relative;overflow:hidden;}
+.hero-eye{position:relative;z-index:2;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#C9975A;margin-bottom:12px;}
+.hero h1{position:relative;z-index:2;font-size:clamp(26px,6vw,48px);color:#FFF8EE;line-height:1.2;}
+.hero h1 span{color:#E8C38A;}
+.hero-dates{position:relative;z-index:2;margin-top:12px;font-size:13px;color:rgba(255,248,238,.55);letter-spacing:.08em;}
+.hero-div{position:relative;z-index:2;width:40px;height:2px;background:#C9975A;margin:18px auto 0;}
+.tab-bar{background:#1A1208;display:flex;justify-content:center;gap:6px;padding:10px 16px;border-top:1px solid rgba(201,151,90,.2);}
+.tab-btn{padding:7px 20px;border:1px solid rgba(201,151,90,.35);border-radius:20px;background:transparent;color:rgba(255,248,238,.5);font-size:12px;cursor:pointer;letter-spacing:.05em;}
+.tab-btn.active{background:#C9975A;color:#1A1208;font-weight:700;border-color:#C9975A;}
+.content{max-width:680px;margin:0 auto;padding:24px 14px 60px;display:flex;flex-direction:column;gap:14px;}
+.card{background:#FFFDF8;border:1px solid #EBE0CE;border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(26,18,8,.06);}
+.card-head{display:flex;align-items:center;gap:12px;padding:13px 16px 11px;border-bottom:1px solid #EBE0CE;background:rgba(201,151,90,.06);}
+.card-icon{font-size:20px;width:32px;text-align:center;flex-shrink:0;}
+.card-meta{flex:1;}
+.card-date{display:block;font-size:11px;font-weight:700;color:#7A6A55;letter-spacing:.07em;text-transform:uppercase;}
+.card-label{display:block;font-size:16px;font-weight:700;color:#2D2010;margin-top:2px;}
+.card-body{padding:11px 16px;display:flex;flex-direction:column;gap:7px;}
+.ev-row{display:flex;gap:10px;align-items:baseline;}
+.ev-time{font-size:11px;font-weight:700;color:#C9975A;min-width:68px;flex-shrink:0;text-transform:uppercase;letter-spacing:.03em;}
+.ev-text{font-size:13.5px;color:#2D2010;line-height:1.5;}
+.conf{font-family:monospace;background:rgba(201,151,90,.12);color:#C9975A;padding:1px 5px;border-radius:3px;font-size:12px;}
+.badge-confirmed{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:#2D6A4F;color:#fff;padding:2px 7px;border-radius:10px;margin-left:6px;vertical-align:middle;}
+.hotel-room{margin:6px 0 2px;padding:9px 11px;background:rgba(201,151,90,.06);border-radius:8px;border-left:3px solid #C9975A;}
+.room-g{font-weight:700;font-size:13px;margin-bottom:3px;}
+.room-t{font-size:13px;color:#7A6A55;margin-bottom:2px;}
+.room-c{font-size:12px;color:#7A6A55;margin-bottom:2px;}
+.room-n{font-size:11.5px;color:#7A6A55;line-height:1.4;margin-top:3px;}
+.note-section{border-top:1px dashed #EBE0CE;padding:9px 16px 11px;}
+.note-text{font-size:13px;color:#7A6A55;margin-bottom:5px;line-height:1.4;}
+.note-btn{font-size:12px;color:#C9975A;background:none;border:none;cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:2px;}
+.note-edit{display:none;flex-direction:column;gap:6px;}
+.note-edit textarea{width:100%;padding:7px 9px;border:1px solid #EBE0CE;border-radius:6px;font-family:Georgia,serif;font-size:13px;color:#2D2010;background:#FFFDF8;resize:none;}
+.note-actions{display:flex;gap:7px;}
+.btn-save{padding:5px 14px;background:#C9975A;color:#1A1208;border:none;border-radius:5px;font-size:12px;font-weight:700;cursor:pointer;}
+.btn-cancel{padding:5px 14px;background:transparent;color:#7A6A55;border:1px solid #EBE0CE;border-radius:5px;font-size:12px;cursor:pointer;}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(26,18,8,.65);z-index:100;align-items:center;justify-content:center;padding:20px;}
+.modal-overlay.open{display:flex;}
+.footer{text-align:center;padding:20px;font-size:11px;color:#7A6A55;letter-spacing:.06em;}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div style="position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1563492065599-3520f775eeed?w=1400&auto=format&fit=crop&q=80');background-size:cover;background-position:center 40%;opacity:0.3;z-index:0;"></div>
+  <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(26,18,8,0.5) 0%,rgba(26,18,8,0.75) 100%);z-index:1;"></div>
+  <div class="hero-eye">Family Trip · 18 Days</div>
+  <h1>Bangkok <span>Christmas</span><br>2026 – 2027</h1>
+  <div class="hero-dates">Dec 18, 2026 &nbsp;→&nbsp; Jan 4, 2027</div>
+  <div class="hero-div"></div>
+</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('itinerary',this)">Itinerary</button>
+  <button class="tab-btn" onclick="switchTab('travelers',this)">Travelers</button>
+  <button class="tab-btn" onclick="switchTab('hotels',this)">Hotels</button>
+</div>
+
+
+<div id="admin-bar" style="background:#1A1208;border-top:1px solid rgba(201,151,90,.15);padding:9px 16px;display:flex;align-items:center;gap:10px;justify-content:center;">
+  <label style="font-size:12px;color:rgba(255,248,238,.45);letter-spacing:.08em;">Admin</label>
+  <input type="password" id="pin-input" maxlength="6" placeholder="PIN" style="width:90px;padding:5px 9px;border:1px solid #C9975A;border-radius:6px;background:transparent;color:#FFF8EE;font-size:13px;text-align:center;letter-spacing:.15em;"/>
+  <button onclick="checkPin()" style="padding:5px 14px;background:#C9975A;color:#1A1208;border:none;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;">Unlock</button>
+  <span id="pin-error" style="font-size:11px;color:#E07070;display:none;">Wrong PIN</span>
+</div>
+<div id="admin-badge" style="display:none;background:#1A1208;border-top:1px solid rgba(201,151,90,.15);padding:7px;text-align:center;font-size:11px;letter-spacing:.12em;color:#C9975A;text-transform:uppercase;">🔓 Admin mode — tap Edit on any day</div>
+<div class="content" id="content"></div>
+<div class="footer">Bangkok · Phuket · Hong Kong · Christmas 2026</div>
+
+<script>
+var notes = JSON.parse(localStorage.getItem('bkk_notes')||'{}');
+var currentTab = 'itinerary';
+
+var ITINERARY = [
+  {date:"Fri Dec 18",label:"Depart LA",icon:"✈️",events:[
+    {t:"10:35 PM",x:"Depart LAX · CX 881 · Cathay Pacific · Terminal Tom Bradley Intl"},
+    {t:"Confs",x:"<span class='conf'>EAYZVR</span> Neale & Marissa · <span class='conf'>CBA2PH</span> James/Natalie/Ursula/Samantha/Susanna · <span class='conf'>A9RHF5</span> Brooke · <span class='conf'>AMKNYT</span> Joey · <span class='conf'>CLTYNL</span> Vilai & Manuel"},
+    {t:"Arrives",x:"Sun Dec 20 · 6:30 AM HKG"}
+  ]},
+  {date:"Sun Dec 20",label:"Arrive Bangkok",icon:"🏨",events:[
+    {t:"6:30 AM",x:"Arrive HKG Terminal 1"},
+    {t:"9:55 AM",x:"Depart HKG · CX 615 · Airbus A330"},
+    {t:"12:05 PM",x:"Arrive BKK Suvarnabhumi"},
+    {t:"Transfer",x:"Peninsula Bangkok limousine · 3 Mercedes Benz Vito Vans · Fast track + golf cart · All 11 passengers <span class='badge-confirmed'>Confirmed</span>"},
+    {t:"",x:"Uniformed rep at arrival gate with name board · VIP Fast Lane immigration · luggage assistance through customs"},
+    {t:"Help",x:"Peninsula contact: +66 2 020 2888"},
+    {t:"2:00 PM",x:"Check in · The Peninsula Bangkok · 333 Charoennakorn Rd"},
+    {t:"Room 1",x:"Neale & Marissa · Grand Deluxe Suite King · <span class='conf'>12598SG371623</span>"},
+    {t:"Room 2",x:"Natalie & James · Grand Deluxe Twin (connecting) · <span class='conf'>9087453731061</span>"},
+    {t:"Room 3",x:"Brooke & Joey · Grand Deluxe King · <span class='conf'>12598SG371634</span>"},
+    {t:"Room 4",x:"Ursula/Samantha/Susanna · Grand Deluxe Twin · <span class='conf'>12598SG370518</span>"},
+    {t:"Room 5",x:"Vilai & Manuel · Grand Deluxe King · <span class='conf'>12598SG371953</span>"}
+  ]},
+  {date:"Mon Dec 21",label:"Free Day",icon:"🌴",events:[
+    {t:"",x:"Open day — explore Bangkok at leisure"}
+  ]},
+  {date:"Tue Dec 22",label:"Temples & Cruise",icon:"⛩️",events:[
+    {t:"Morning",x:"Grand Palace & Wat Arun"},
+    {t:"Lunch",x:"Supanniga"},
+    {t:"Evening",x:"Pruek Dinner Cruise <span class='badge-confirmed'>Confirmed</span>"}
+  ]},
+  {date:"Wed Dec 23",label:"Ayutthaya & Dinner",icon:"🏛️",events:[
+    {t:"Day trip",x:"Ayutthaya ancient temples"},
+    {t:"Dinner",x:"Aunty Patsy's house <span class='badge-confirmed'>Confirmed</span>"},
+    {t:"",x:"Nearby restaurant TBC"}
+  ]},
+  {date:"Thu Dec 24",label:"Christmas Eve",icon:"🕯️",events:[
+    {t:"Morning",x:"Visit Granny"},
+    {t:"Evening",x:"Christmas Eve Gala · The Peninsula Bangkok"}
+  ]},
+  {date:"Fri Dec 25",label:"Christmas Day",icon:"🎄",events:[
+    {t:"Morning",x:"10am Mass · Ascension Cathedral"},
+    {t:"Lunch",x:"Chef Man · Eastin Grand Sathorn"},
+    {t:"Dinner",x:"Sakot"}
+  ]},
+  {date:"Sat Dec 26",label:"Most Family Departs",icon:"👋",events:[
+    {t:"Noon",x:"Ursula, Samantha, Susanna, Vilai & Manuel check out · Peninsula Bangkok"}
+  ]},
+  {date:"Sun Dec 27",label:"Phuket · Naka Island",icon:"🏝️",events:[
+    {t:"7:40 AM",x:"Neale, Marissa, Natalie, Brooke & James check out · Peninsula Bangkok"},
+    {t:"9:40 AM",x:"Depart BKK · TG 205 · Thai Airways · <span class='conf'>AQYF45</span>"},
+    {t:"Seats",x:"Neale 12A · Marissa 12B · Natalie 11A · Brooke 11B · James 14A · Business"},
+    {t:"11:10 AM",x:"Arrive HKT · Domestic Terminal"},
+    {t:"3:00 PM",x:"Check in · Naka Island Resort"},
+    {t:"Villa",x:"Neale & Marissa · Beachfront Villa 1BR · <span class='conf'>9092396519447</span>"},
+    {t:"Room",x:"Natalie, Brooke & James · King + Sofa · <span class='conf'>9092396654214</span>"}
+  ]},
+  {date:"Thu Dec 31",label:"New Year's Eve",icon:"🥂",events:[
+    {t:"Evening",x:"NYE Festival Gala Dinner · Naka Island Resort"}
+  ]},
+  {date:"Fri Jan 1",label:"New Year's Day · Back to Bangkok",icon:"🎆",events:[
+    {t:"8:25 AM",x:"Check out · Naka Island"},
+    {t:"10:25 AM",x:"Depart HKT · TG 204 · Thai Airways · <span class='conf'>AQYF45</span>"},
+    {t:"Seats",x:"Neale 12A · Marissa 12B · Natalie 12K · Brooke 12J · James 14J · Business"},
+    {t:"11:55 AM",x:"Arrive BKK"},
+    {t:"2:00 PM",x:"Check in · Peninsula Bangkok"},
+    {t:"Room 1",x:"Neale & Marissa · Deluxe King · <span class='conf'>12598SG371605</span>"},
+    {t:"Room 2",x:"Natalie, James & Brooke · Deluxe Twin · <span class='conf'>12598SG371606</span>"}
+  ]},
+  {date:"Sat Jan 2",label:"Depart Bangkok · Hong Kong",icon:"🌃",events:[
+    {t:"5:55 AM",x:"Check out · Peninsula Bangkok"},
+    {t:"7:55 AM",x:"Depart BKK · CX 756 · Cathay Pacific"},
+    {t:"Seats",x:"Neale 39C · Marissa 39A · Economy · <span class='conf'>EAYZVR</span>"},
+    {t:"",x:"James/Natalie/Ursula/Samantha/Susanna same flight · <span class='conf'>CBA2PH</span>"},
+    {t:"11:45 AM",x:"Arrive HKG · CBA2PH group connects CX 884 → LAX"},
+    {t:"3:00 PM",x:"Check in · Rosewood Hong Kong · Grand Harbour View King · <span class='conf'>6222SG752523</span>"}
+  ]},
+  {date:"Mon Jan 4",label:"Home",icon:"🏠",events:[
+    {t:"12:00 PM",x:"Check out · Rosewood Hong Kong"},
+    {t:"7:50 PM",x:"Depart HKG · CX 882 · Cathay Pacific · <span class='conf'>EAYZVR</span>"},
+    {t:"Seats",x:"Neale 15K · Marissa 16K · Business Essential"},
+    {t:"4:20 PM PST",x:"Arrive LAX · Terminal Tom Bradley Intl"}
+  ]}
+];
+
+var TRAVELERS = [
+  {name:"Neale & Marissa",flights:[
+    {f:"CX 881",r:"LAX→HKG",d:"Dec 18",s:"17K & 18K",c:"EAYZVR",cabin:"Business Essential"},
+    {f:"CX 615",r:"HKG→BKK",d:"Dec 20",s:"12A & 12C",c:"EAYZVR",cabin:"Business Essential"},
+    {f:"TG 205",r:"BKK→HKT",d:"Dec 27",s:"12A & 12B",c:"AQYF45",cabin:"Business"},
+    {f:"TG 204",r:"HKT→BKK",d:"Jan 1",s:"12A & 12B",c:"AQYF45",cabin:"Business"},
+    {f:"CX 756",r:"BKK→HKG",d:"Jan 2",s:"39C & 39A",c:"EAYZVR",cabin:"Economy"},
+    {f:"CX 882",r:"HKG→LAX",d:"Jan 4",s:"15K & 16K",c:"EAYZVR",cabin:"Business Essential"}
+  ]},
+  {name:"James Redington",flights:[
+    {f:"CX 881",r:"LAX→HKG",d:"Dec 18",s:"43C",c:"CBA2PH",cabin:"Economy"},
+    {f:"CX 615",r:"HKG→BKK",d:"Dec 20",s:"40C",c:"CBA2PH",cabin:"Economy"},
+    {f:"TG 205",r:"BKK→HKT",d:"Dec 27",s:"14A",c:"AQYF45",cabin:"Business"},
+    {f:"TG 204",r:"HKT→BKK",d:"Jan 1",s:"14J",c:"AQYF45",cabin:"Business"},
+    {f:"CX 756",r:"BKK→HKG",d:"Jan 2",s:"45A",c:"CBA2PH",cabin:"Economy"},
+    {f:"CX 884",r:"HKG→LAX",d:"Jan 2",s:"42A",c:"CBA2PH",cabin:"Economy"}
+  ]},
+  {name:"Natalie Redington",flights:[
+    {f:"CX 881",r:"LAX→HKG",d:"Dec 18",s:"43A",c:"CBA2PH",cabin:"Economy"},
+    {f:"CX 615",r:"HKG→BKK",d:"Dec 20",s:"40A",c:"CBA2PH",cabin:"Economy"},
+    {f:"TG 205",r:"BKK→HKT",d:"Dec 27",s:"11A",c:"AQYF45",cabin:"Business"},
+    {f:"TG 204",r:"HKT→BKK",d:"Jan 1",s:"12K",c:"AQYF45",cabin:"Business"},
+    {f:"CX 756",r:"BKK→HKG",d:"Jan 2",s:"45C",c:"CBA2PH",cabin:"Economy"},
+    {f:"CX 884",r:"HKG→LAX",d:"Jan 2",s:"42C",c:"CBA2PH",cabin:"Economy"}
+  ]},
+  {name:"Brooke Redington",flights:[
+    {f:"CX 881",r:"LAX→HKG",d:"Dec 18",s:"TBC",c:"A9RHF5",cabin:"Economy"},
+    {f:"CX 615",r:"HKG→BKK",d:"Dec 20",s:"TBC",c:"A9RHF5",cabin:"Economy"},
+    {f:"TG 205",r:"BKK→HKT",d:"Dec 27",s:"11B",c:"AQYF45",cabin:"Business"},
+    {f:"TG 204",r:"HKT→BKK",d:"Jan 1",s:"12J",c:"AQYF45",cabin:"Business"},
+    {f:"CX 756",r:"BKK→HKG",d:"Jan 2",s:"TBC",c:"A9RHF5",cabin:"Economy"},
+    {f:"CX 882",r:"HKG→LAX",d:"Jan 4",s:"TBC",c:"A9RHF5",cabin:"Economy"}
+  ]},
+  {name:"Ursula Dysthe",flights:[
+    {f:"CX 881",r:"LAX→HKG",d:"Dec 18",s:"44D",c:"CBA2PH",cabin:"Economy"},
+    {f:"CX 615",r:"HKG→BKK",d:"Dec 20",s:"41A",c:"CBA2PH",cabin:"Economy"},
+    {f:"CX 756",r:"BKK→HKG",d:"Jan 2",s:"47A",c:"CBA2PH",cabin:"Economy"},
+    {f:"CX 884",r:"HKG→LAX",d:"Jan 2",s:"43A",c:"CBA2PH",cabin:"Economy"}
+  ]},
+  {name:"Samantha Sanchez",flights:[
+    {f:"CX 881",r:"LAX→HKG",d:"Dec 18",s:"44A",c:"CBA2PH",cabin:"Economy"},
+    {f:"CX 615",r:"HKG→BKK",d:"Dec 20",s:"41D",c:"CBA2PH",cabin:"Economy"},
+    {f:"CX 756",r:"BKK→HKG",d:"Jan 2",s:"46A",c:"CBA2PH",cabin:"Economy"},
+    {f:"CX 884",r:"HKG→LAX",d:"Jan 2",s:"43D",c:"CBA2PH",cabin:"Economy"}
+  ]},
+  {name:"Susanna Sanchez",flights:[
+    {f:"CX 881",r:"LAX→HKG",d:"Dec 18",s:"44C",c:"CBA2PH",cabin:"Economy"},
+    {f:"CX 615",r:"HKG→BKK",d:"Dec 20",s:"41C",c:"CBA2PH",cabin:"Economy"},
+    {f:"CX 756",r:"BKK→HKG",d:"Jan 2",s:"46C",c:"CBA2PH",cabin:"Economy"},
+    {f:"CX 884",r:"HKG→LAX",d:"Jan 2",s:"43C",c:"CBA2PH",cabin:"Economy"}
+  ]},
+  {name:"Vilai & Manuel Ursua",flights:[
+    {f:"CX 881",r:"LAX→HKG",d:"Dec 18",s:"31G & 31D",c:"CLTYNL",cabin:"Premium Economy"},
+    {f:"CX 615",r:"HKG→BKK",d:"Dec 20",s:"TBC",c:"CLTYNL",cabin:"Economy"},
+    {f:"CX 756",r:"BKK→HKG",d:"Jan 15",s:"TBC",c:"CLTYNL",cabin:"Economy"},
+    {f:"CX 884",r:"HKG→LAX",d:"Jan 15",s:"32G & 32F",c:"CLTYNL",cabin:"Premium Economy"}
+  ]},
+  {name:"Joey Wolfe",flights:[
+    {f:"CX 881",r:"LAX→HKG",d:"Dec 18",s:"TBC",c:"AMKNYT",cabin:"Economy"},
+    {f:"CX 615",r:"HKG→BKK",d:"Dec 20",s:"TBC",c:"AMKNYT",cabin:"Economy"},
+    {f:"Return",r:"TBD",d:"TBD",s:"TBD",c:"TBD",cabin:""}
+  ]}
+];
+
+var HOTELS = [
+  {name:"The Peninsula Bangkok",icon:"🏨",addr:"333 Charoennakorn Road, Bangkok 10600",phone:"+66-2-0202888",
+   stays:[
+     {period:"Dec 20–27",rooms:[
+       {g:"Neale & Marissa",t:"Grand Deluxe Suite King",c:"12598SG371623",n:"7 nights · Amex FHR: early check-in, upgrade, breakfast for 2, $100 credit, 4PM checkout, valet"},
+       {g:"Natalie & James",t:"Grand Deluxe Twin (connecting to suite)",c:"9087453731061",n:"7 nights · Amex FHR benefits"},
+       {g:"Brooke & Joey",t:"Grand Deluxe King",c:"12598SG371634",n:"7 nights · Amex FHR benefits"},
+       {g:"Ursula / Samantha / Susanna",t:"Grand Deluxe Twin",c:"12598SG370518",n:"6 nights · checks out Dec 26 · Amex FHR benefits"},
+       {g:"Vilai & Manuel",t:"Grand Deluxe King",c:"12598SG371953",n:"6 nights · checks out Dec 26 · Amex FHR benefits"}
+     ]},
+     {period:"Jan 1–2 (return night)",rooms:[
+       {g:"Neale & Marissa",t:"Deluxe King",c:"12598SG371605",n:"1 night · Amex FHR benefits"},
+       {g:"Natalie, James & Brooke",t:"Deluxe Twin",c:"12598SG371606",n:"1 night · Amex FHR benefits"}
+     ]}
+   ]
+  },
+  {name:"Naka Island · A Luxury Collection Resort",icon:"🏝️",addr:"32 Moo 5, Pa Klok, Phuket 83110",phone:"+66-76-371 400",
+   stays:[
+     {period:"Dec 27 – Jan 1",rooms:[
+       {g:"Neale & Marissa",t:"Beachfront Villa, 1 Bedroom",c:"9092396519447",n:"5 nights · Amex FHR benefits · $1,599 due at hotel · ⚠️ Non-refundable from Nov 15"},
+       {g:"Natalie, Brooke & James",t:"Room, 1 King Bed + Sofa",c:"9092396654214",n:"5 nights · Amex FHR benefits · $1,599 due at hotel · ⚠️ Non-refundable from Nov 15"}
+     ]}
+   ]
+  },
+  {name:"Rosewood Hong Kong",icon:"🌃",addr:"Victoria Dockside, 18 Salisbury Road, Tsim Sha Tsui, Kowloon",phone:"",
+   stays:[
+     {period:"Jan 2–4",rooms:[
+       {g:"Neale & Marissa",t:"Grand Harbour View Room King",c:"6222SG752523",n:"2 nights · Wi-Fi included"}
+     ]}
+   ]
+  }
+];
+
+function switchTab(tab, btn) {
+  currentTab = tab;
+  document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  renderTab(tab);
+}
+
+function renderTab(tab) {
+  var c = document.getElementById('content');
+  if (tab === 'itinerary') renderItinerary(c);
+  else if (tab === 'travelers') renderTravelers(c);
+  else renderHotels(c);
+}
+
+function renderItinerary(c) {
+  c.innerHTML = '';
+  ITINERARY.forEach(function(day, i) {
+    var evHTML = day.events.map(function(e){
+      return '<div class="ev-row"><span class="ev-time">'+e.t+'</span><span class="ev-text">'+e.x+'</span></div>';
+    }).join('');
+    var noteVal = notes[i] || '';
+    var div = document.createElement('div');
+    div.className = 'card';
+    div.innerHTML =
+      '<div class="card-head"><span class="card-icon">'+day.icon+'</span><div class="card-meta"><span class="card-date">'+day.date+'</span><span class="card-label">'+day.label+'</span></div>'+(isAdmin ? '<button onclick="openEdit('+i+')" style="font-size:11px;padding:4px 10px;border:1px solid #C9975A;border-radius:5px;background:transparent;color:#C9975A;cursor:pointer;flex-shrink:0;">Edit</button>' : '')+'</div>'+
+      '<div class="card-body">'+evHTML+'</div>'+
+      '<div class="note-section">'+
+        '<div id="nd'+i+'">'+(noteVal?'<p class="note-text">📌 '+noteVal+'</p>':'')+
+          '<button class="note-btn" onclick="openNote('+i+')">'+( noteVal?'Edit note':'+ Add note')+'</button></div>'+
+        '<div class="note-edit" id="ne'+i+'">'+
+          '<textarea id="ni'+i+'" rows="2" placeholder="Add a note for the family...">'+noteVal+'</textarea>'+
+          '<div class="note-actions">'+
+            '<button class="btn-save" onclick="saveNote('+i+')">Save</button>'+
+            '<button class="btn-cancel" onclick="closeNote('+i+')">Cancel</button>'+
+          '</div></div>'+
+      '</div>';
+    c.appendChild(div);
+  });
+}
+
+function renderTravelers(c) {
+  c.innerHTML = '';
+  TRAVELERS.forEach(function(t) {
+    var rows = t.flights.map(function(f){
+      return '<div class="ev-row"><span class="ev-time">'+f.f+'</span><span class="ev-text">'+f.r+' · '+f.d+' · Seat(s) '+f.s+(f.cabin?' · '+f.cabin:'')+' · <span class="conf">'+f.c+'</span></span></div>';
+    }).join('');
+    var div = document.createElement('div');
+    div.className = 'card';
+    div.innerHTML = '<div class="card-head"><span class="card-icon">👤</span><div class="card-meta"><span class="card-label">'+t.name+'</span></div></div><div class="card-body">'+rows+'</div>';
+    c.appendChild(div);
+  });
+}
+
+function renderHotels(c) {
+  c.innerHTML = '';
+  HOTELS.forEach(function(h) {
+    h.stays.forEach(function(stay) {
+      var rooms = stay.rooms.map(function(r){
+        return '<div class="hotel-room"><div class="room-g">'+r.g+'</div><div class="room-t">'+r.t+'</div><div class="room-c">Conf: <span class="conf">'+r.c+'</span></div>'+(r.n?'<div class="room-n">'+r.n+'</div>':'')+'</div>';
+      }).join('');
+      var div = document.createElement('div');
+      div.className = 'card';
+      div.innerHTML =
+        '<div class="card-head"><span class="card-icon">'+h.icon+'</span><div class="card-meta"><span class="card-label">'+h.name+'</span><span class="card-date">'+stay.period+'</span></div></div>'+
+        '<div class="card-body">'+
+          '<div class="ev-row"><span class="ev-time">Address</span><span class="ev-text">'+h.addr+'</span></div>'+
+          (h.phone?'<div class="ev-row"><span class="ev-time">Phone</span><span class="ev-text">'+h.phone+'</span></div>':'')+
+          rooms+
+        '</div>';
+      c.appendChild(div);
+    });
+  });
+}
+
+function openNote(i) {
+  document.getElementById('nd'+i).style.display='none';
+  var ne = document.getElementById('ne'+i);
+  ne.style.display='flex';
+  document.getElementById('ni'+i).focus();
+}
+
+function closeNote(i) {
+  document.getElementById('nd'+i).style.display='';
+  document.getElementById('ne'+i).style.display='none';
+}
+
+function saveNote(i) {
+  var val = document.getElementById('ni'+i).value.trim();
+  notes[i] = val;
+  localStorage.setItem('bkk_notes', JSON.stringify(notes));
+  closeNote(i);
+  renderTab(currentTab);
+}
+
+
+var isAdmin = false;
+var editingDay = null;
+var ADMIN_PIN = "1225";
+
+function checkPin() {
+  var pin = document.getElementById('pin-input').value;
+  if (pin === ADMIN_PIN) {
+    isAdmin = true;
+    document.getElementById('admin-bar').style.display = 'none';
+    document.getElementById('admin-badge').style.display = 'block';
+    renderTab(currentTab);
+  } else {
+    document.getElementById('pin-error').style.display = 'inline';
+  }
+}
+
+document.getElementById('pin-input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') checkPin();
+});
+
+function openEdit(i) {
+  editingDay = i;
+  var day = ITINERARY[i];
+  document.getElementById('modal-date').value = day.date;
+  document.getElementById('modal-label').value = day.label;
+  document.getElementById('modal-icon').value = day.icon;
+  document.getElementById('modal-events').value = day.events.map(function(e){ return e.t ? e.t + ' | ' + e.x : e.x; }).join('\n');
+  document.getElementById('edit-modal').classList.add('open');
+}
+
+function closeEdit() {
+  document.getElementById('edit-modal').classList.remove('open');
+}
+
+function saveEdit() {
+  var i = editingDay;
+  ITINERARY[i].date = document.getElementById('modal-date').value;
+  ITINERARY[i].label = document.getElementById('modal-label').value;
+  ITINERARY[i].icon = document.getElementById('modal-icon').value;
+  ITINERARY[i].events = document.getElementById('modal-events').value.split('\n').filter(function(l){ return l.trim(); }).map(function(l){
+    var p = l.split('|');
+    return p.length > 1 ? {t: p[0].trim(), x: p[1].trim()} : {t: '', x: l.trim()};
+  });
+  closeEdit();
+  renderTab(currentTab);
+}
+
+renderTab('itinerary');
+</script>
+
+<div id="edit-modal" class="modal-overlay">
+  <div style="background:#FFFDF8;border-radius:14px;padding:26px 22px 20px;width:100%;max-width:480px;box-shadow:0 8px 40px rgba(26,18,8,.3);">
+    <div style="font-family:Georgia,serif;font-size:19px;font-weight:700;color:#2D2010;margin-bottom:16px;">Edit Day</div>
+    <label style="display:block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#7A6A55;margin-bottom:3px;">Date</label>
+    <input type="text" id="modal-date" style="width:100%;padding:7px 9px;border:1px solid #EBE0CE;border-radius:6px;font-size:14px;color:#2D2010;background:#FFFDF8;margin-bottom:10px;"/>
+    <label style="display:block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#7A6A55;margin-bottom:3px;">Label</label>
+    <input type="text" id="modal-label" style="width:100%;padding:7px 9px;border:1px solid #EBE0CE;border-radius:6px;font-size:14px;color:#2D2010;background:#FFFDF8;margin-bottom:10px;"/>
+    <label style="display:block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#7A6A55;margin-bottom:3px;">Icon (emoji)</label>
+    <input type="text" id="modal-icon" maxlength="4" style="width:80px;padding:7px 9px;border:1px solid #EBE0CE;border-radius:6px;font-size:14px;color:#2D2010;background:#FFFDF8;margin-bottom:10px;"/>
+    <label style="display:block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#7A6A55;margin-bottom:3px;">Events (one per line · format: Time | Description)</label>
+    <textarea id="modal-events" rows="8" style="width:100%;padding:7px 9px;border:1px solid #EBE0CE;border-radius:6px;font-size:13px;color:#2D2010;background:#FFFDF8;resize:vertical;margin-bottom:6px;font-family:Georgia,serif;"></textarea>
+    <p style="font-size:11px;color:#7A6A55;margin-bottom:14px;">Example: <code>9:00 AM | Depart hotel</code> or just a description with no time.</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <button onclick="saveEdit()" style="padding:7px 18px;background:#C9975A;color:#1A1208;border:none;border-radius:7px;font-size:13px;font-weight:700;cursor:pointer;">Save</button>
+      <button onclick="closeEdit()" style="padding:7px 18px;background:transparent;color:#7A6A55;border:1px solid #EBE0CE;border-radius:7px;font-size:13px;cursor:pointer;">Cancel</button>
+    </div>
+  </div>
+</div>
+</body>
+</html>
