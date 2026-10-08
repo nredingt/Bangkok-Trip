@@ -134,7 +134,7 @@ onValue(ref(db, "trip/poll"), function(snap) {
   if (window._refreshPoll) window._refreshPoll();
 });
 
-onValue(ref(db, "trip/pollDinner"), function(snap) {
+onValue(ref(db, "trip/pollDinner2"), function(snap) {
   window._fbPollDinner = snap.val() || {};
   if (window._refreshPollDinner) window._refreshPollDinner();
 });
@@ -146,7 +146,7 @@ window._togglePollDinner = function(choice, name) {
   if (cur === undefined || cur === null) poll[choice][name] = true;
   else if (cur === true) poll[choice][name] = false;
   else delete poll[choice][name];
-  set(ref(db, "trip/pollDinner/" + choice), poll[choice]);
+  set(ref(db, "trip/pollDinner2/" + choice), poll[choice]);
 };
 
 window._togglePoll = function(choice, name) {
@@ -190,6 +190,15 @@ onValue(ref(db, "trip/notes"), function(snap) {
   });
 });
 
+
+// One-time cleanup: remove the old Dec 21 note about IconSiam and the tailor
+onValue(ref(db, "trip/notes/2"), function(snap) {
+  var v = snap.val();
+  if (typeof v === "string" && /iconsiam/i.test(v) && /tailor/i.test(v)) {
+    set(ref(db, "trip/notes/2"), null);
+  }
+}, { onlyOnce: true });
+
 window._saveNoteToFirebase = function(i, val) {
   set(ref(db, "trip/notes/"+i), val);
 };
@@ -221,7 +230,21 @@ window._saveNoteToFirebase = function(i, val) {
   <span id="pin-error" style="font-size:11px;color:#E07070;display:none;">✗</span>
 </div>
 <div id="admin-badge" style="display:none;position:fixed;top:12px;right:12px;z-index:200;background:rgba(26,18,8,0.75);padding:6px 12px;border-radius:20px;border:1px solid rgba(201,151,90,.4);font-size:11px;letter-spacing:.1em;color:#C9975A;backdrop-filter:blur(4px);">🔓 Admin</div>
-<div id="updated-as-of" style="max-width:680px;margin:0 auto;text-align:left;color:#D32F2F;font-size:11px;font-weight:700;letter-spacing:.06em;padding:10px 14px 0;">UPDATED AS OF MON OCT 5, 2026 · 1:35 PM PT</div>
+<div id="updated-as-of" style="max-width:680px;margin:0 auto;text-align:left;color:#D32F2F;font-size:11px;font-weight:700;letter-spacing:.06em;padding:10px 14px 0;">UPDATED AS OF THU OCT 8, 2026 · 4:07 PM PT</div>
+<script>
+(function(){
+  try {
+    var el = document.getElementById('updated-as-of');
+    var d = new Date(document.lastModified);
+    // If the server sends no Last-Modified header, browsers return "now" -- keep the built-in stamp in that case.
+    if (isNaN(d.getTime()) || Math.abs(Date.now() - d.getTime()) < 120000) return;
+    var opts = {timeZone:'America/Los_Angeles', weekday:'short', month:'short', day:'numeric', year:'numeric', hour:'numeric', minute:'2-digit'};
+    var parts = {};
+    new Intl.DateTimeFormat('en-US', opts).formatToParts(d).forEach(function(p){ parts[p.type] = p.value; });
+    el.textContent = ('UPDATED AS OF ' + parts.weekday + ' ' + parts.month + ' ' + parts.day + ', ' + parts.year + ' \u00b7 ' + parts.hour + ':' + parts.minute + ' ' + parts.dayPeriod + ' PT').toUpperCase();
+  } catch(e) {}
+})();
+</script>
 <div class="content" id="content"></div>
 <div class="footer">Bangkok · Phuket · Hong Kong · Christmas 2026</div>
 
@@ -268,7 +291,7 @@ var ITINERARY = [
     {t:"Room 3",x:"Brooke & Joey · Grand Deluxe King · <span class='conf'>12598SG371634</span>"},
     {t:"Room 4",x:"Ursula/Samantha/Susanna · Grand Deluxe Twin · <span class='conf'>12598SG370518</span>"},
     {t:"Room 5",x:"Vilai & Manuel · Grand Deluxe King · <span class='conf'>12598SG371953</span>"},
-    {t:"6:30 PM",x:"Dinner · <a href='https://www.peninsula.com/en/bangkok/hotel-fine-dining/thiptara-outdoor-thai' target='_blank' style='color:#C9975A;text-decoration:underline;'>Thiptara</a> · The Peninsula Bangkok · 2 tables (6 & 5) <span class='badge-confirmed'>Confirmed</span>"}
+    {t:"6:30 PM",x:"Dinner · <a href='https://www.peninsula.com/en/bangkok/hotel-fine-dining/thiptara-outdoor-thai' target='_blank' style='color:#C9975A;text-decoration:underline;'>Thiptara</a> · The Peninsula Bangkok <span class='badge-confirmed'>Confirmed</span>"}
   ]},
   {date:"Mon Dec 21",label:"Temples & Lunch · Ursua Group Arrives",icon:"⛩️",events:[
     {t:"6:00–10:30 AM",x:"Free Breakfast · River Café · The Peninsula Bangkok"},
@@ -280,7 +303,7 @@ var ITINERARY = [
     {t:"3:00–3:45 PM",x:"Peninsula Bangkok Cooking Class <span style='display:inline-block;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:#E3F2FD;color:#1565C0;border:1px solid #1565C0;padding:2px 7px;border-radius:10px;margin-left:6px;vertical-align:middle;'>Available</span>"},
     {t:"3:00 PM",x:"<a href='https://www.google.com/maps/search/Universal+Tailor+Bangkok' target='_blank' style='color:#C9975A;text-decoration:underline;'>Universal Tailor</a> · suit / linen suit and pants / shirts"},
     {t:"3:00 PM",x:"Ursua group checks in · <a href='https://www.hilton.com/en/hotels/bkkcpgi-hilton-garden-inn-bangkok-riverside/' target='_blank' style='color:#C9975A;text-decoration:underline;'>Hilton Garden Inn Bangkok Riverside</a> · <span class='conf'>3471141037</span>"},
-    {t:"Evening",x:"<b>Dinner at IconSiam — vote for your choices!</b> Tap to cycle ✅ yes · ❌ no · ○ undecided"},
+    {t:"Evening",x:"<b>Monday dinner — China House or IconSiam?</b> Tap your name to cycle ✅ yes · ❌ no · ○ open"},
     {t:"",x:"__POLL_DINNER__"}
   ]},
   {date:"Tue Dec 22",label:"Open Day · Pool, Spa, <a href='https://www.iconsiam.com' target='_blank' style='color:#C9975A;text-decoration:underline;'>IconSiam</a>, Pruek Cruise",icon:"🚢",events:[
@@ -338,7 +361,7 @@ var ITINERARY = [
     {t:"3:00 PM",x:"Check in · <a href='https://www.marriott.com/en-us/hotels/pyxlc-the-naka-island-a-luxury-collection-resort-and-spa-phuket/overview/' target='_blank' style='color:#C9975A;text-decoration:underline;'>Naka Island Resort</a>"},
     {t:"Villa",x:"Neale & Marissa · Beachfront Villa 1BR · <span class='conf'>9092396519447</span>"},
     {t:"Room",x:"Natalie, Brooke & James · King + Sofa · <span class='conf'>9092396654214</span>"},
-    {t:"6:00 PM",x:"Dinner · Aiyara · Naka Island · 5 persons <span style='display:inline-block;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:#FFF9C4;color:#5D4037;border:1px solid #F9A825;padding:2px 7px;border-radius:10px;margin-left:6px;vertical-align:middle;'>Requested</span>"}
+    {t:"6:00 PM",x:"Dinner · Aiyara · Naka Island · 5 persons <span class='badge-confirmed'>Confirmed</span>"}
   ]},
   {date:"Mon Dec 28",label:"Free Day · Naka Island",icon:"🏝️",events:[
     {t:"Morning",x:"Phuket Old Town excursion · Sino-Portuguese architecture · street food · coffee <span style='display:inline-block;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:#FFF3E0;color:#E65100;border:1px solid #E65100;padding:2px 7px;border-radius:10px;margin-left:6px;vertical-align:middle;'>Tentative</span>"},
@@ -354,13 +377,13 @@ var ITINERARY = [
     {t:"",x:"📷 Take passport photos on phone at departure for insurance registration"},
     {t:"",x:"Passengers: Neale · Marissa · Natalie · Brooke · James · ฿93,400 PAID <span class='badge-confirmed'>Confirmed</span>"},
     {t:"",x:"Contact: Ray (Jenjira) · WhatsApp +66 93 765 5080 · nktourdesk@destinationservices.com"},
-    {t:"6:00 PM",x:"Dinner · Z Bar · Naka Island · 5 persons <span style='display:inline-block;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:#FFF9C4;color:#5D4037;border:1px solid #F9A825;padding:2px 7px;border-radius:10px;margin-left:6px;vertical-align:middle;'>Requested</span>"}
+    {t:"6:00 PM",x:"Dinner · Z Bar · Naka Island · 5 persons · Walk-in, first-come first-served (no reservation required)"}
   ]},
   {date:"Wed Dec 30",label:"Ursua Group Departs · Krabi Group Returns",icon:"✈️",events:[
     {t:"Noon",x:"Ursula, Samantha & Susanna check out · <a href='https://www.krabiresort.net' target='_blank' style='color:#C9975A;text-decoration:underline;'>Krabi Resort</a>"},
     {t:"5:40 PM",x:"Albert, Gail, Lianna, Liam & Lorenz depart BKK · CX 708 → HKG"},
     {t:"6:00 PM",x:"Ursula, Samantha & Susanna depart Krabi · SL 813 → Bangkok DMK 7:20 PM · <span class='conf'>WV****</span>"},
-    {t:"6:00 PM",x:"Dinner · Veranda · Naka Island · 5 persons <span style='display:inline-block;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:#FFF9C4;color:#5D4037;border:1px solid #F9A825;padding:2px 7px;border-radius:10px;margin-left:6px;vertical-align:middle;'>Requested</span>"},
+    {t:"6:00 PM",x:"Dinner · Veranda · Naka Island · 5 persons <span class='badge-confirmed'>Confirmed</span>"},
     {t:"12:30 AM",x:"Depart HKG · CX 880 → LAX · arrives 8:55 PM same day"}
   ]},
   {date:"Thu Dec 31",label:"New Year's Eve",icon:"🥂",events:[
@@ -576,11 +599,8 @@ var POLL_CHOICES = [
 ];
 
 var POLL_DINNER_CHOICES = [
-"<a href='https://naracuisine.com/menu/' target='_blank' style='color:#C9975A;text-decoration:underline;'>Nara Thai Cuisine</a><br><span style='font-size:11px;font-weight:400;color:#7A6A55;'>3rd floor · NARA Thai Cuisine – Authentic Thai Flavors</span>",
-"<a href='https://www.biancabangkok.com/' target='_blank' style='color:#C9975A;text-decoration:underline;'>Bianca Italian</a><br><span style='font-size:11px;font-weight:400;color:#7A6A55;'>6th floor · Bianca Italian Restaurant Bangkok | Fresh Pasta, Pizza & Dolci</span>",
-"<a href='https://www.opentable.com/r/bskicon-khet-khlong-san' target='_blank' style='color:#C9975A;text-decoration:underline;'>Bread Street Kitchen</a><br><span style='font-size:11px;font-weight:400;color:#7A6A55;'>3rd floor · Bread Street Kitchen & Bar</span>",
-"<a href='https://www.blue-alainducasse.com/' target='_blank' style='color:#C9975A;text-decoration:underline;'>Blue by Alain Ducasse</a><br><span style='font-size:11px;font-weight:400;color:#7A6A55;'>1st floor · Blue by Alain Ducasse – 1 Michelin Star French Fine Dining</span>",
-"IconSiam Food Court"
+"China House (at Oriental)",
+"IconSiam"
 ];
 
 window._refreshPollDinner = function() {
@@ -705,7 +725,7 @@ function renderItinerary(c) {
           FAMILY.map(function(n){ return "<th>" + n.substring(0,4) + "</th>"; }).join("") +
           "</tr></thead><tbody id='poll-table-body'>" + renderPollRows() + "</tbody></table></div>";
       } else if (e.x === "__POLL_DINNER__") {
-        evContent = '<div class="poll-wrap"><table class="poll-table"><thead><tr><th>Restaurant</th>' +
+        evContent = '<div class="poll-wrap"><table class="poll-table"><thead><tr><th>Option</th>' +
           FAMILY.map(function(n){ return "<th>" + n.substring(0,4) + "</th>"; }).join("") +
           "</tr></thead><tbody id='poll-dinner-body'>" + renderPollDinnerRows() + "</tbody></table></div>";
       } else {
