@@ -13,7 +13,7 @@ body{background:#FDF6EC;font-family:Georgia,serif;color:#2D2010;min-height:100vh
 .hero h1 span{color:#E8C38A;}
 .hero-dates{position:relative;z-index:2;margin-top:12px;font-size:13px;color:rgba(255,248,238,.55);letter-spacing:.08em;}
 .hero-div{position:relative;z-index:2;width:40px;height:2px;background:#C9975A;margin:18px auto 0;}
-.tab-bar{background:#1A1208;display:flex;justify-content:center;gap:6px;padding:10px 16px;border-top:1px solid rgba(201,151,90,.2);}
+.tab-bar{background:#1A1208;display:flex;flex-wrap:wrap;justify-content:center;gap:6px;padding:10px 16px;border-top:1px solid rgba(201,151,90,.2);}
 .tab-btn{padding:7px 20px;border:1px solid rgba(201,151,90,.35);border-radius:20px;background:transparent;color:rgba(255,248,238,.5);font-size:12px;cursor:pointer;letter-spacing:.05em;}
 .tab-btn.active{background:#C9975A;color:#1A1208;font-weight:700;border-color:#C9975A;}
 .content{max-width:680px;margin:0 auto;padding:24px 14px 60px;display:flex;flex-direction:column;gap:14px;}
@@ -84,6 +84,20 @@ body{background:#FDF6EC;font-family:Georgia,serif;color:#2D2010;min-height:100vh
 .cc-a9rhf5{background:#FFF3E0;border-color:#E65100;color:#BF360C;}
 .cc-amknyt{background:#F3E5F5;border-color:#6A1B9A;color:#4A148C;}
 .cc-cltynl{background:#E0F2F1;border-color:#00695C;color:#004D40;}
+.paid-toggle{display:flex;gap:8px;padding:4px 16px 8px}.paid-toggle button{flex:1;padding:8px 10px;border:1px solid #C9975A;background:transparent;color:#7A6A55;border-radius:8px;font:inherit;font-size:13px;cursor:pointer}.paid-toggle button.on{background:#C9975A;color:#fff;font-weight:600}
+.paid-sum{display:flex;flex-wrap:wrap;gap:10px;padding:12px 16px 4px;}
+.paid-sum>div{flex:1 1 140px;background:rgba(201,151,90,.08);border-left:3px solid #C9975A;border-radius:8px;padding:9px 11px;}
+.paid-sum .lbl{font-size:10.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#7A6A55;}
+.paid-sum .val{font-size:16px;font-weight:700;color:#2D2010;margin-top:2px;}
+.paid-row{display:flex;gap:10px;padding:10px 0;border-top:1px solid #EBE0CE;}
+.paid-row:first-child{border-top:none;}
+.paid-date{min-width:62px;font-size:11px;font-weight:700;color:#C9975A;text-transform:uppercase;letter-spacing:.03em;flex-shrink:0;}
+.paid-main{flex:1;min-width:0;}
+.paid-item{font-size:13.5px;font-weight:600;color:#2D2010;line-height:1.4;}
+.paid-sub{font-size:12px;color:#7A6A55;line-height:1.45;margin-top:2px;}
+.paid-amt{text-align:right;font-size:13.5px;font-weight:700;color:#2D2010;max-width:42%;flex-shrink:0;}
+.pbadge{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:2px 7px;border-radius:10px;margin-top:4px;color:#fff;}
+.pb-paid{background:#2D6A4F;} .pb-deposit{background:#B7791F;} .pb-due{background:#B42318;} .pb-credit{background:#1565C0;} .pb-cancelled{background:#7A6A55;} .pb-unknown{background:#9A8E7C;}
 .pay-wrap{overflow-x:auto;margin:10px 0;}
 .pay-table{border-collapse:collapse;width:100%;font-size:13px;}
 .pay-table th{background:rgba(201,151,90,.12);color:#7A6A55;font-weight:700;font-size:11px;letter-spacing:.07em;text-transform:uppercase;padding:9px 12px;border:1px solid #EBE0CE;text-align:left;}
@@ -222,6 +236,7 @@ window._saveNoteToFirebase = function(i, val) {
   <button class="tab-btn" onclick="switchTab('travelers',this)">Travelers</button>
   <button class="tab-btn" onclick="switchTab('hotels',this)">Hotels</button>
   <button class="tab-btn" onclick="switchTab('payments',this)">Payments</button>
+  <button class="tab-btn" onclick="switchTab('paid',this)">Paid</button>
   <button class="tab-btn" onclick="switchTab('seats',this)">Seats</button>
 </div>
 
@@ -232,7 +247,7 @@ window._saveNoteToFirebase = function(i, val) {
   <span id="pin-error" style="font-size:11px;color:#E07070;display:none;">✗</span>
 </div>
 <div id="admin-badge" style="display:none;position:fixed;top:12px;right:12px;z-index:200;background:rgba(26,18,8,0.75);padding:6px 12px;border-radius:20px;border:1px solid rgba(201,151,90,.4);font-size:11px;letter-spacing:.1em;color:#C9975A;backdrop-filter:blur(4px);">🔓 Admin</div>
-<div id="updated-as-of" style="max-width:680px;margin:0 auto;text-align:left;color:#D32F2F;font-size:11px;font-weight:700;letter-spacing:.06em;padding:10px 14px 0;">UPDATED AS OF WED OCT 14, 2026 · 10:10 PM PT</div>
+<div id="updated-as-of" style="max-width:680px;margin:0 auto;text-align:left;color:#D32F2F;font-size:11px;font-weight:700;letter-spacing:.06em;padding:10px 14px 0;">UPDATED AS OF MON OCT 19, 2026 · 8:54 PM PT</div>
 <script>
 (function(){
   try {
@@ -305,8 +320,8 @@ var ITINERARY = [
     {t:"3:00–3:45 PM",x:"Peninsula Bangkok Cooking Class <span style='display:inline-block;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:#E3F2FD;color:#1565C0;border:1px solid #1565C0;padding:2px 7px;border-radius:10px;margin-left:6px;vertical-align:middle;'>Available</span>"},
     {t:"3:00 PM",x:"<a href='https://www.google.com/maps/search/Universal+Tailor+Bangkok' target='_blank' style='color:#C9975A;text-decoration:underline;'>Universal Tailor</a> · suit / linen suit and pants / shirts"},
     {t:"3:00 PM",x:"Ursua group checks in · <a href='https://www.hilton.com/en/hotels/bkkcpgi-hilton-garden-inn-bangkok-riverside/' target='_blank' style='color:#C9975A;text-decoration:underline;'>Hilton Garden Inn Bangkok Riverside</a> · <span class='conf'>3471141037</span>"},
-    {t:"Evening",x:"<b>Monday dinner — China House (11 people) or IconSiam?</b> Tap your name to cycle ✅ yes · ❌ no · ○ open"},
-    {t:"",x:"__POLL_DINNER__"},
+    {t:"6:15 PM",x:"<b>Dinner — China House by Chef Fei · Mandarin Oriental</b> · 11 people · long table (main dining room) · 1 Peking Duck pre-ordered, rest à la carte · allergies flagged: 1 peanut, 1 lobster &amp; all nuts"},
+    {t:"",x:"<b>To arrange:</b> boat from the Peninsula to the Oriental for the 6:15 PM dinner — ask the Peninsula concierge. The Peninsula shuttle boat runs to the Oriental until about 5:00 PM; after that the Oriental's boat has to be called to the Peninsula pier. Also confirm the return."},
     {t:"Evening",x:"Albert family (Albert, Gail, Lianna, Liam & Lorenz) · dinner at <a href='https://www.iconsiam.com' target='_blank' style='color:#C9975A;text-decoration:underline;'>IconSiam</a> · separate from the group"}
   ]},
   {date:"Tue Dec 22",label:"Open Day · Pool, Spa, <a href='https://www.iconsiam.com' target='_blank' style='color:#C9975A;text-decoration:underline;'>IconSiam</a>, Pruek Cruise",icon:"🚢",events:[
@@ -332,7 +347,8 @@ var ITINERARY = [
     {t:"6:00–6:45 AM",x:"Peninsula Bangkok Yoga & Meditation <span style='display:inline-block;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:#E3F2FD;color:#1565C0;border:1px solid #1565C0;padding:2px 7px;border-radius:10px;margin-left:6px;vertical-align:middle;'>Available</span>"},
     {t:"Morning",x:"Visit Granny",k:"5_0"},
     {t:"3:00–3:45 PM",x:"Peninsula Bangkok Cooking Class <span style='display:inline-block;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:#E3F2FD;color:#1565C0;border:1px solid #1565C0;padding:2px 7px;border-radius:10px;margin-left:6px;vertical-align:middle;'>Available</span>"},
-    {t:"Evening",x:"Christmas Eve Gala · The Peninsula Bangkok",k:"5_1"}
+    {t:"6:00 PM",x:"Christmas Eve Gala · The Peninsula Bangkok · 6:00–10:00 PM",k:"5_1"},
+    {t:"",x:"<b>Gala change (confirmed by Peninsula Dining, Oct 18):</b> Patsy &amp; Mon will not join · reservation reduced by 2 guests · the THB 18,376 net already paid for those two is kept as <b>food &amp; beverage credit</b> to use during our stay, including beverages at the Gala Dinner"}
   ]},
   {date:"Fri Dec 25",label:"Christmas Day",icon:"🎄",events:[
     {t:"6:00–10:30 AM",x:"Free Breakfast · River Café · The Peninsula Bangkok <span style='display:inline-block;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:#E3F2FD;color:#1565C0;border:1px solid #1565C0;padding:2px 7px;border-radius:10px;margin-left:6px;vertical-align:middle;'>Available</span>"},
@@ -560,6 +576,7 @@ function renderTab(tab) {
   else if (tab === 'travelers') renderTravelers(c);
   else if (tab === 'hotels') renderHotels(c);
   else if (tab === 'payments') renderPayments(c);
+  else if (tab === 'paid') renderPaid(c);
   else if (tab === 'seats') renderSeats(c);
 }
 
@@ -978,6 +995,142 @@ function renderPayments(c) {
       '</div>'+
     '</div>';
   c.appendChild(card);
+}
+
+
+// Paid ledger — one row per payment, chronological (d = date paid / booked, YYYY-MM-DD)
+// st: paid | deposit | due | credit | cancelled | unknown ; n = numeric amount, cur = currency (for totals)
+var PAID_LEDGER = [
+  {"ev": "2026-12-19", "d": "2026-04-08", "item": "Rosewood Hong Kong · Dec 19–23 (4 nights)", "vendor": "Amex Travel", "who": "Neale (Marissa added)", "st": "unknown", "cf": 85, "amt": "$4,715.37 charged", "note": "Dates Dec 19–23 don’t match the Bangkok itinerary — confirm this booking is still active. Not included in totals."},
+  {"ev": null, "d": "2026-04-13", "item": "Cathay flights FWIVA2 (earlier itinerary)", "vendor": "Cathay Pacific", "who": "Neale & Marissa", "st": "unknown", "cf": 60, "amt": "$16,123.06 ticketed", "note": "Replaced by booking EAYZVR on Apr 28. No refund email found — check whether this was refunded. Not included in totals."},
+  {"ev": "2026-12-20", "d": "2026-04-27", "item": "Peninsula Bangkok · Dec 20–26 · Grand Deluxe Suite King", "vendor": "Amex Travel (trip ZO-AX1045-14408)", "who": "Neale + 1", "st": "paid", "cf": 95, "n": 5344.74, "cur": "USD", "note": "$0 due at hotel; incidentals at check-out"},
+  {"ev": "2026-12-20", "d": "2026-04-27", "item": "Peninsula Bangkok · Dec 20–26 · Grand Deluxe Twin", "vendor": "Amex Travel (ZO-AX1045-14446)", "who": "Neale’s card · James & Natalie", "st": "paid", "cf": 95, "n": 3490.5, "cur": "USD", "note": "$0 due at hotel"},
+  {"ev": "2026-12-20", "d": "2026-04-27", "item": "Peninsula Bangkok · Grand Deluxe King (Ursua room)", "vendor": "Amex Travel (ZO-AX1045-14582)", "who": "Vilai & Manuel", "st": "cancelled", "cf": 80, "amt": "$3,490.50 charged, then cancelled Apr 28", "note": "Refund promised within 45 days; refund not confirmed in email"},
+  {"ev": null, "d": "2026-04-27", "item": "Cathay flights DFJZVC", "vendor": "Amex Travel / Cathay", "who": "James, Ursula, Samantha", "st": "cancelled", "cf": 90, "amt": "$9,433.29 paid, then cancelled", "note": "Rebooked on a different Cathay booking"},
+  {"ev": "2026-12-18", "d": "2026-04-27", "item": "Cathay flights (Amex trip 7470-9236)", "vendor": "Amex Travel / Cathay", "who": "Vilai & Manuel Ursua", "st": "paid", "cf": 90, "n": 7436.86, "cur": "USD"},
+  {"ev": "2026-12-18", "d": "2026-04-28", "item": "Cathay flights EAYZVR · LAX–HKG–BKK, Jan 2 / Jan 4 return", "vendor": "Cathay Pacific", "who": "Neale & Marissa", "st": "paid", "cf": 90, "n": 17108.06, "cur": "USD"},
+  {"ev": "2026-12-20", "d": "2026-04-28", "item": "Peninsula Bangkok · 2 × Grand Deluxe King", "vendor": "Amex Travel (ZO-AX1045-15068)", "who": "Ursuas · Brooke & Joey", "st": "paid", "cf": 90, "n": 6981.0, "cur": "USD", "note": "Marissa’s card; $0 due at hotel"},
+  {"ev": "2026-12-20", "d": "2026-04-28", "item": "Peninsula Bangkok · Grand Deluxe Twin (triple)", "vendor": "Amex Travel (ZO-AX1045-15235)", "who": "Ursula, Samantha & Susanna", "st": "paid", "cf": 85, "n": 3490.5, "cur": "USD", "note": "Paid with 200,000 Membership Rewards points plus $1,490.50 cash"},
+  {"ev": "2026-12-18", "d": "2026-04-28", "item": "Cathay flights A5X5NX", "vendor": "Amex Travel / Cathay", "who": "Susanna", "st": "paid", "cf": 85, "n": 3339.53, "cur": "USD", "note": "Charge date approximate (Apr 28 Pacific)"},
+  {"ev": "2026-12-27", "d": "2026-05-01", "item": "The Naka Island · Beachfront Villa · Dec 27–Jan 1", "vendor": "Amex Travel (FHR)", "who": "Neale · 2 guests", "st": "paid", "cf": 95, "n": 11565.99, "cur": "USD", "note": "Prepaid. Cancellation: 100% fee if cancelled Nov 15–Dec 27"},
+  {"ev": "2027-01-01", "d": "2026-05-01", "item": "The Naka Island · hotel fees due at the property", "vendor": "The Naka Island", "who": "", "st": "due", "cf": 95, "n": 1599.42, "cur": "USD", "note": "Due at the hotel at check-out"},
+  {"ev": "2026-12-20", "d": "2026-05-03", "item": "Extra-adult supplement · Peninsula triple room", "vendor": "The Peninsula Bangkok", "who": "Ursula, Samantha & Susanna", "st": "due", "cf": 60, "amt": "฿3,000++ per night", "note": "Neale agreed to pay this; no charge seen in email"},
+  {"ev": "2026-12-18", "d": "2026-05-04", "item": "Cathay paid seats (A5X5NX)", "vendor": "Cathay Pacific", "who": "Susanna", "st": "paid", "cf": 90, "n": 150, "cur": "USD"},
+  {"ev": "2026-12-18", "d": "2026-05-04", "item": "Cathay flights A9RHF5 / UDTGAQ", "vendor": "Amex Travel / Cathay", "who": "Brooke", "st": "unknown", "cf": 85, "amt": "Amount not in email", "note": "Price is only in the PDF attachment"},
+  {"ev": "2026-12-31", "d": "2026-05-06", "item": "Naka NYE Festival Gala Dinner · Dec 31", "vendor": "The Naka Island", "who": "", "st": "due", "cf": 40, "amt": "Quoted ฿25,894 per adult", "note": "Quote only — I found no booking, deposit or guest count"},
+  {"ev": "2026-12-20", "d": "2026-05-07", "item": "Airport arrival Dec 20 · 3 Mercedes Vitos + fast track + golf cart", "vendor": "The Peninsula Bangkok", "who": "11 guests", "st": "unknown", "cf": 80, "amt": "Price not stated", "note": "Guest account; card guarantee, no deposit"},
+  {"ev": "2026-12-22", "d": "2026-05-12", "item": "Pruek Cruise · private dinner cruise Dec 22, 5–7 PM", "vendor": "Pruek Cruise", "who": "19 guests", "st": "deposit", "cf": 55, "amt": "Deposit sent — amount not stated", "note": "Pruek’s deposit to lock the date was quoted as ฿20,000; balance and due date not found"},
+  {"ev": "2026-12-18", "d": "2026-05-14", "item": "Cathay / AA flights · Amex trip ZO-AX1049-33581", "vendor": "Amex Travel", "who": "Natalie", "st": "paid", "cf": 90, "n": 3431.43, "cur": "USD", "note": "14,089 points deducted, $140.89 credited back"},
+  {"ev": "2026-12-18", "d": "2026-05-17", "item": "Cathay flights GVPZUJ / AMKNYT (outbound)", "vendor": "Amex Travel / Cathay", "who": "Joey Wolfe", "st": "unknown", "cf": 85, "amt": "Amount not in email", "note": "Price is only in the PDF attachment; no return flight seen"},
+  {"ev": null, "d": "2026-05-26", "item": "Refund · Cathay booking DFJZVC", "vendor": "Amex Travel", "who": "James, Ursula, Samantha", "st": "credit", "cf": 90, "amt": "$9,133.29 refunded", "note": "$300 apparently kept ($100 per ticket) — 70% sure"},
+  {"ev": "2026-12-24", "d": "2026-09-07", "item": "Christmas Eve Gala Dinner · Dec 24", "vendor": "The Peninsula Bangkok", "who": "14 adults + 1 child", "st": "paid", "cf": 97, "n": 133226, "cur": "THB", "note": "฿9,188 per adult, ฿4,594 child"},
+  {"ev": null, "d": "2026-09-07", "item": "Received from Ursula Dysthe · “Gala and boat dinner”", "vendor": "Venmo", "who": "", "st": "credit", "cf": 90, "amt": "$500 received", "note": "Money received, not spent"},
+  {"ev": "2026-12-24", "d": "2026-09-08", "item": "Christmas Eve Gala Dinner · 1 more adult", "vendor": "The Peninsula Bangkok", "who": "1 adult", "st": "paid", "cf": 75, "n": 9188, "cur": "THB", "note": "2C2P receipt not seen in email"},
+  {"ev": "2026-12-29", "d": "2026-09-25", "item": "Private catamaran · Rok & Haa Islands · Dec 29", "vendor": "Siam Adventures World via NK Tour Desk", "who": "Neale, Marissa, Natalie, Brooke, James", "st": "paid", "cf": 97, "n": 93400, "cur": "THB", "note": "฿88,400 charter + ฿5,000 jetty pickup · paid in full"},
+  {"ev": "2026-12-21", "d": "2026-09-28", "item": "PS1 private grand temple tour · 2 longtail boats · Dec 21", "vendor": "The Peninsula Bangkok", "who": "9 guests", "st": "due", "cf": 85, "n": 52965, "cur": "THB", "note": "Confirmed Sep 28; no prepayment requested, due date not stated"},
+  {"ev": "2026-12-22", "d": "2026-09-28", "item": "Pool Sala Package II · Dec 22 & 23", "vendor": "The Peninsula Bangkok", "who": "", "st": "due", "cf": 65, "amt": "฿6,600++ per sala", "note": "Two salas; no payment request seen"},
+  {"ev": "2026-12-24", "d": "2026-09-29", "item": "Christmas Eve Gala Dinner · 2 more adults", "vendor": "The Peninsula Bangkok", "who": "2 adults", "st": "paid", "cf": 97, "n": 18376, "cur": "THB", "note": "Later kept as food & beverage credit (see Oct 19)"},
+  {"ev": "2026-12-22", "d": "2026-09-29", "item": "Royal Thai massage · Dec 22, 2:00 PM · 90 min", "vendor": "The Peninsula Spa", "who": "2 guests", "st": "unknown", "cf": 80, "amt": "Price not stated", "note": "Late cancellation charged 100%"},
+  {"ev": null, "d": "2026-10-01", "item": "Universal Tailor · 2 suits, linen pants, 5 shirts", "vendor": "Universal Tailor Bangkok", "who": "Neale & James", "st": "due", "cf": 80, "amt": "Quoted “2680$”", "note": "Currency unclear; no deposit mentioned"},
+  {"ev": "2026-12-23", "d": "2026-10-05", "item": "Car to Thana City golf · Dec 23, 6:30 AM", "vendor": "The Peninsula Bangkok", "who": "3 passengers", "st": "due", "cf": 90, "n": 12000, "cur": "THB", "note": "Charged to room"},
+  {"ev": "2026-12-23", "d": "2026-10-05", "item": "Golf · Thana City · Dec 23, 7:38 AM", "vendor": "Thana City Golf & Country Club", "who": "3 players", "st": "due", "cf": 70, "amt": "฿5,200 net per player", "note": "Greens, caddy & cart; club rental ฿1,500 per set"},
+  {"ev": "2026-12-20", "d": "2026-10-06", "item": "Thiptara dinner deposit · Dec 20", "vendor": "The Peninsula Bangkok", "who": "11 guests", "st": "deposit", "cf": 90, "n": 11000, "cur": "THB", "note": "฿1,000 per guest, credited to the bill; non-refundable. Payment date approximate"},
+  {"ev": "2026-12-27", "d": "2026-10-06", "item": "Airport transfer · Phuket Airport → Ao Po Grand Marina · Dec 27", "vendor": "The Naka Island", "who": "5 passengers", "st": "due", "cf": 95, "n": 2450, "cur": "THB", "note": "Per car, per way; pay at the resort"},
+  {"ev": "2026-12-27", "d": "2026-10-07", "item": "Naka dinners · Dec 27–30 · 6:00 PM", "vendor": "The Naka Island", "who": "5 guests", "st": "due", "cf": 85, "amt": "Prices not stated", "note": "Aiyara, Rum Chapel, Veranda; ZBar is walk-in. Pay at the restaurants or room"},
+  {"ev": "2026-12-21", "d": "2026-10-14", "item": "China House by Chef Fei · Dec 21 dinner", "vendor": "Mandarin Oriental Bangkok", "who": "11 guests", "st": "deposit", "cf": 90, "n": 9000, "cur": "THB", "note": "Deposit received for 9; no extra deposit needed for 11. Credited to the bill. 6:15 PM, long table for 11 confirmed Oct 19. Peking Duck pre-order price not stated"},
+  {"ev": "2026-12-24", "d": "2026-10-19", "item": "Christmas Eve Gala · Patsy & Mon removed", "vendor": "The Peninsula Bangkok", "who": "", "st": "credit", "cf": 90, "amt": "฿18,376 kept as F&B credit", "note": "Usable during our stay, including drinks at the Gala"}
+];
+
+var PAID_LABELS = {paid:"Paid", deposit:"Deposit paid", due:"Balance due", credit:"Credit", cancelled:"Cancelled / refunded", unknown:"Amount not confirmed"};
+
+function paidFmt(n, cur) {
+  var sym = {USD:"$", THB:"฿", HKD:"HK$"}[cur] || (cur + " ");
+  return sym + (n % 1 ? n.toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2}) : Math.round(n).toLocaleString("en-US"));
+}
+
+var paidSortMode = 'paid';
+function setPaidSort(m) { paidSortMode = m; renderPaid(document.getElementById('content')); }
+
+var paidUnlocked = false;
+function renderPaid(c) {
+  if (paidUnlocked) return renderPaidInner(c);
+  c.innerHTML = '<div class="card"><div class="card-head"><span class="card-icon">🔒</span><div class="card-meta"><span class="card-label">Paid — locked</span><span class="card-date">Enter the password to view</span></div></div>'+
+    '<div class="card-body"><div style="display:flex;gap:8px;"><input id="paid-pw" type="password" autocomplete="off" placeholder="Password" style="flex:1;padding:10px;border:1px solid #C9975A;border-radius:8px;font:inherit;font-size:16px;">'+
+    '<button id="paid-go" style="padding:10px 16px;border:0;border-radius:8px;background:#C9975A;color:#fff;font:inherit;font-weight:600;cursor:pointer;">Unlock</button></div>'+
+    '<div id="paid-err" style="color:#B3261E;font-size:13px;min-height:18px;margin-top:8px;"></div></div></div>';
+  var inp = document.getElementById('paid-pw');
+  function tryIt(){ if (inp.value === '$') { paidUnlocked = true; renderPaidInner(c); } else { document.getElementById('paid-err').textContent = 'Wrong password'; inp.value=''; } }
+  document.getElementById('paid-go').onclick = tryIt;
+  inp.onkeydown = function(e){ if (e.key === 'Enter') tryIt(); };
+}
+
+function renderPaidInner(c) {
+  c.innerHTML = '';
+  var byEv = (paidSortMode === 'event');
+  var key = function(r){ return byEv ? (r.ev || '9999-99-99') : r.d; };
+  var rows = PAID_LEDGER.slice().sort(function(a,b){ var x=key(a), y=key(b); return x < y ? -1 : x > y ? 1 : (a.d < b.d ? -1 : a.d > b.d ? 1 : 0); });
+  var paidTot = {}, dueTot = {};
+  rows.forEach(function(r){
+    if (typeof r.n !== 'number') return;
+    if (r.st === 'paid' || r.st === 'deposit') paidTot[r.cur] = (paidTot[r.cur]||0) + r.n;
+    if (r.st === 'due') dueTot[r.cur] = (dueTot[r.cur]||0) + r.n;
+  });
+  var sum = '';
+  Object.keys(paidTot).forEach(function(k){ sum += '<div><div class="lbl">Paid to date · '+k+'</div><div class="val">'+paidFmt(paidTot[k],k)+'</div></div>'; });
+  Object.keys(dueTot).forEach(function(k){ sum += '<div><div class="lbl">Still due (known amounts) · '+k+'</div><div class="val">'+paidFmt(dueTot[k],k)+'</div></div>'; });
+  var head = document.createElement('div');
+  head.className = 'card';
+  head.innerHTML =
+    '<div class="card-head"><span class="card-icon">🧾</span><div class="card-meta"><span class="card-label">What’s Paid</span><span class="card-date">'+(byEv?'By date of the trip event (stay, flight, dinner…)':'By date paid or booked')+'</span></div></div>'+
+    '<div class="paid-toggle"><button class="'+(byEv?'':'on')+'" onclick="setPaidSort(\'paid\')">Date paid</button><button class="'+(byEv?'on':'')+'" onclick="setPaidSort(\'event\')">Date of event</button></div>'+
+    '<div class="paid-sum">'+sum+'</div>'+
+    '<div style="padding:6px 16px 12px;font-size:11.5px;color:#7A6A55;line-height:1.5;">Totals add only the rows that show an amount; currencies are not converted. Rows marked “Amount not confirmed” are booked but the email did not state a figure.</div>';
+  c.appendChild(head);
+  var months = {}, order = [];
+  rows.forEach(function(r){
+    var k = byEv ? (r.ev ? r.ev.slice(0,7) : 'none') : r.d.slice(0,7);
+    if (!months[k]) { months[k] = []; order.push(k); }
+    months[k].push(r);
+  });
+  var MN = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  order.forEach(function(k){
+    var none = (k === 'none');
+    var y = none ? '' : k.slice(0,4), m = none ? 0 : parseInt(k.slice(5,7),10);
+    var body = months[k].map(function(r){
+      var dd = byEv ? r.ev : r.d;
+      var day = dd ? MN[parseInt(dd.slice(5,7),10)-1] + ' ' + parseInt(dd.slice(8,10),10) : '—';
+      var other = byEv ? ('paid ' + MN[parseInt(r.d.slice(5,7),10)-1] + ' ' + parseInt(r.d.slice(8,10),10)) : '';
+      var amt = (typeof r.n === 'number') ? paidFmt(r.n, r.cur) : (r.amt || '—');
+      return '<div class="paid-row">'+
+        '<div class="paid-date">'+day+'</div>'+
+        '<div class="paid-main"><div class="paid-item">'+r.item+'</div>'+
+          '<div class="paid-sub">'+(r.vendor||'')+(r.who?' · '+r.who:'')+(r.cf?' · '+r.cf+'% sure':'')+(other?' · '+other:'')+'</div>'+
+          (r.note?'<div class="paid-sub">'+r.note+'</div>':'')+
+          '<span class="pbadge pb-'+r.st+'">'+PAID_LABELS[r.st]+'</span></div>'+
+        '<div class="paid-amt">'+amt+'</div>'+
+      '</div>';
+    }).join('');
+    var card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = '<div class="card-head"><span class="card-icon">📅</span><div class="card-meta"><span class="card-label">'+(none?'No trip date (refunds, money received, superseded or undated)':MN[m-1]+' '+y)+'</span></div></div><div class="card-body" style="gap:0;">'+body+'</div>';
+    c.appendChild(card);
+  });
+  var miss = [
+    "Hilton Garden Inn Bangkok Riverside (conf. 3471141037) — no payment email found",
+    "Krabi Resort, Dec 26–30 (Ursula, Samantha, Susanna) — no booking email found",
+    "Veranda High Resort Chiang Mai + the Bangkok–Chiang Mai flights (Albert family) — no email found",
+    "Domestic Thai flights: Bangkok–Krabi, Krabi–Bangkok, Bangkok–Phuket (TG205) — no ticket or receipt found",
+    "Sakot dinner, Dec 25 (booked under K. Mon) — no email found",
+    "Hong Kong Jan 2–4 (hotel, dinners, tours) — nothing found",
+    "Bangkok lodging Dec 30–Jan 2 — nothing found",
+    "Peninsula airport vans and fast track (Dec 20 and departure) — no price stated",
+    "Second Naka room (reservations #81872762 / #81859886) — only one paid villa found"
+  ];
+  var mc = document.createElement('div');
+  mc.className = 'card';
+  mc.innerHTML = '<div class="card-head"><span class="card-icon">🔎</span><div class="card-meta"><span class="card-label">Not found in email</span><span class="card-date">Check these · may have been paid elsewhere</span></div></div><div class="card-body">'+
+    miss.map(function(t){ return '<div class="ev-row"><span class="ev-text">• '+t+'</span></div>'; }).join('')+'</div>';
+  c.appendChild(mc);
 }
 
 function renderHotels(c) {
